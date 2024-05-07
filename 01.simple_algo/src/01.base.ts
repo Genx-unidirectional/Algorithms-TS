@@ -27,3 +27,16 @@ console.log(recursiveOddFilter([2, 4, 2, 443, 67, 2, 45, 33, 7]));
 // console.timeEnd();
 
 //Linear search algorithm
+//linear search algorithm where the number of iteration is directly proportional to the input
+//find the wanted number in a array
+
+function findNum(arr: number[], num: number): string {
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] === num) {
+      return `The number ${num} found at index ${i}`;
+    }
+  }
+  return `The number ${num} not exists`;
+}
+
+console.log(findNum([1, 2, 4, 4, 43, 23, 211], 43));
