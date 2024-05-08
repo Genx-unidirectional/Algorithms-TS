@@ -40,3 +40,34 @@ function findNum(arr: number[], num: number): string {
 }
 
 console.log(findNum([1, 2, 4, 4, 43, 23, 211], 43));
+
+//Binary search algorithm
+
+//Binary search algorithm only works on sorted array
+
+function binaryNumFind(arr: number[], num: number) {
+  let firstIdx = 0;
+  let lastIdx = arr.length - 1;
+  let midIdx = Math.floor((firstIdx + lastIdx) / 2);
+  while (arr[midIdx] !== num && firstIdx <= midIdx) {
+    if (arr[midIdx] < num) {
+      firstIdx = midIdx + 1;
+    } else {
+      lastIdx = midIdx - 1;
+    }
+    console.log("hello");
+    midIdx = Math.floor((firstIdx + lastIdx) / 2);
+  }
+  console.log("hello");
+  return arr[midIdx] === num ? midIdx : -1;
+}
+
+console.log(
+  binaryNumFind(
+    [
+      1, 2, 3, 393, 3303, 2020202, 11010101, 292929292, 399393939393,
+      3939393939399393939, 39393939393939393939393939393939,
+    ],
+    3939393939399393939
+  )
+);
