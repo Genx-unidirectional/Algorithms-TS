@@ -74,3 +74,52 @@ function findSubStr(mainStr, subStr) {
 }
 console.log(findSubStr("timeatshit", "tsh"));
 // The complexity of naive search algorithm is O(n^2)
+//KMP algorithm (Knuth morris pratt)
+//Lps table calculator
+function calculateLpsTable(subStr) {
+    let i = 1;
+    let j = 0;
+    let lps = new Array(subStr.length).fill(0);
+    while (i < subStr.length) {
+        if (subStr[i] === subStr[j]) {
+            lps[i] = j + 1;
+            i += 1;
+            j += 1;
+        }
+        else {
+            if (j !== 0) {
+                j = lps[j - 1];
+            }
+            else {
+                i += 1;
+            }
+        }
+    }
+    return lps;
+}
+console.log(calculateLpsTable("jbetimjblack"));
+function searchSubString(string, subString) {
+    let strLength = string.length;
+    let subStrLength = subString.length;
+    const lps = calculateLpsTable(subString);
+    let i = 0;
+    let j = 0;
+    while (i < strLength) {
+        if (string[i] === subString[j]) {
+            i += 1;
+            j += 1;
+        }
+        else {
+            if (j !== 0) {
+                j = lps[j - 1];
+            }
+            else {
+                i += 1;
+            }
+        }
+        if (j === subStrLength)
+            return true;
+    }
+    return false;
+}
+// console.log(searchSubString("jimmakescokkies", "kescok"));
